@@ -1,0 +1,55 @@
+engine:
+  disable_run_on_start: false
+  interval: 24h
+  log:
+    level: info
+    static_fields:
+      app: datapipe
+      env: dev
+
+handlers:
+  data-source:
+    type: http
+    http:
+      url: http://localhost:8080/get-data
+      method: GET
+      headers:
+        Content-Type: application/json
+      query_params:
+        result-interval: 24h
+      timeout: 15s
+      retries: 3
+      retry_interval: 30s
+
+  creation-time-filter:
+    type: filter
+    filter:
+      expression: '{{ data-source.status }} == "new"'
+
+  example-handler:
+    type: http
+    http:
+      url: http://localhost:8081/handle-data
+      method: POST
+      body: |
+        {
+          "data": {{ data-source.description }}
+        }
+      headers:
+        Content-Type: application/json
+      timeout: 30s
+
+  data-sink:
+    type: http
+    http:
+      url: http://localhost:8082/save-data
+      method: POST
+      body: |
+        {
+          "raw-data": {{ data-source.description }},
+          "handler-result": {{ example-handler.result }}
+        }
+      headers:
+        Content-Type: application/json
+      timeout: 15s
+      parallel_run: true
