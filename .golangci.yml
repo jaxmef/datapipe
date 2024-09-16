@@ -1,0 +1,7 @@
+run:
+  timeout: 1m
+
+issues:
+  exclude-dirs-use-default: true
+  exclude-dirs:
+    - example

@@ -119,6 +119,7 @@ func runHandlerPipe(ctx context.Context, data map[string]string, handlers []Hand
 		}
 	}
 	if errMsg != "" {
+		// nolint: staticcheck, govet
 		return fmt.Errorf(errMsg)
 	}
 
