@@ -7,7 +7,7 @@
 ### Features
 
  - **Configurable Handlers:** Set up multiple handlers that process data in a defined sequence. Currently supported handler types include filters and HTTP handlers.
- - **Built-in filtering:** Supports complex filtering expressions within handlers, allowing for advanced data processing logic. You can compare strings and numbers using operators like >, <, >=, <=, ==, and !=. The filtering engine also supports logical operators such as && and ||, as well as grouping conditions with braces for creating intricate and precise filtering rules.
+ - **Built-in filtering:** Supports complex filtering expressions within handlers, allowing for advanced data processing logic. You can compare strings and numbers using operators like `>`, `<`, `>=`, `<=`, `==`, and `!=`. The filtering engine also supports logical operators such as `&&` and `||`, as well as grouping conditions with braces for creating intricate and precise filtering rules.
  - **Flexible Workflow:** Each piece of data is processed individually by each handler, allowing for granular control and multiple result sets.
  - **Retry Logic:** Handlers can be configured with retry logic, ensuring robust and resilient data processing.
  - **Interval Execution:** Schedule your data pipeline to run at regular intervals.
@@ -21,6 +21,9 @@
 - [ ] Add a CI/CD pipeline to build and test the code
 - [ ] Add documentation with the full description of the config file options
 - [ ] Pre-validate placeholders in the config
+- [ ] Add other types of handlers with communication via gRPC, Kafka, RabbitMQ, etc.
+- [ ] Add a way to save the state of the pipeline, so it can be restored after a restart
+- [ ] Filter engine should precompile expressions on the start instead of compiling them on each data processing
 
 ### Example configuration:
 
