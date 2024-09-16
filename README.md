@@ -17,7 +17,7 @@
 - [ ] Add trigger API
 - [ ] Add OpenAPI doc for handlers (and triggers)
 - [ ] Add cron-like scheduling
-- [ ] Add a Dockerfile and publish the image to Docker Hub
+- [ ] Publish the docker image to Docker Hub
 - [ ] Add a CI/CD pipeline to build and test the code
 - [ ] Add documentation with the full description of the config file options
 - [ ] Pre-validate placeholders in the config
