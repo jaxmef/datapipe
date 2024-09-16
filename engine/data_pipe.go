@@ -46,6 +46,8 @@ func (dp *dataPipe) Run(ctx context.Context) {
 		err := dp.runJob(ctx)
 		if err != nil {
 			dp.logger.Error().Msgf("failed to run job: %s", err)
+		} else {
+			dp.logger.Info().Msg("job completed successfully")
 		}
 	}
 
@@ -113,11 +115,11 @@ func runHandlerPipe(ctx context.Context, data map[string]string, handlers []Hand
 	errMsg := ""
 	for err := range errsChan {
 		if err != nil {
-			errMsg += err.Error() + "\n"
+			errMsg += fmt.Sprintf("%v; ", err.Error())
 		}
 	}
 	if errMsg != "" {
-		return fmt.Errorf("failed to run handler pipe: %s", errMsg)
+		return fmt.Errorf(errMsg)
 	}
 
 	return nil

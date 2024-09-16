@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/expr-lang/expr"
-	"gopkg.in/yaml.v3"
+	yaml "gopkg.in/yaml.v3"
 )
 
 type HandlerType string

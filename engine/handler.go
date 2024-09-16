@@ -75,6 +75,7 @@ func (h *httpHandler) Handle(ctx context.Context, data map[string]string) ([]Han
 			timer := time.NewTimer(h.cfg.RetryInterval)
 			select {
 			case <-timer.C:
+				// Retry
 			case <-ctx.Done():
 				timer.Stop()
 				return nil, ctx.Err()
@@ -138,9 +139,11 @@ func (h *httpHandler) createRequest(ctx context.Context, data map[string]string)
 		req.Header.Set(key, value)
 	}
 
+	q := req.URL.Query()
 	for key, value := range h.cfg.QueryParams {
-		req.URL.Query().Add(key, value)
+		q.Add(key, value)
 	}
+	req.URL.RawQuery = q.Encode()
 
 	return req, nil
 }

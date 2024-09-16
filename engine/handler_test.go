@@ -138,7 +138,8 @@ func TestHandler_Handle(t *testing.T) {
 	t.Run("Failed to decode response body", func(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
-			w.Write([]byte(`invalid json`))
+			_, err := w.Write([]byte(`invalid json`))
+			assert.NoError(t, err)
 		}))
 		defer mockServer.Close()
 
@@ -224,7 +225,6 @@ func TestHandler_Handle(t *testing.T) {
 	t.Run("Fail after all retries", func(t *testing.T) {
 		mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
-			return
 		}))
 		defer mockServer.Close()
 

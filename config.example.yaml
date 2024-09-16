@@ -13,8 +13,6 @@ handlers:
     http:
       url: http://localhost:8080/get-data
       method: GET
-      headers:
-        Content-Type: application/json
       query_params:
         result-interval: 24h
       timeout: 15s

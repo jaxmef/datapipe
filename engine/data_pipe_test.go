@@ -42,7 +42,7 @@ func TestNewDataPipe_NoHandlers(t *testing.T) {
 func TestNewDataPipe_Success(t *testing.T) {
 	cfg := config.Config{
 		Handlers: &config.HandlerMap{
-			{
+			config.HandlerMapItem{
 				Name: "handler1",
 				Handler: config.Handler{
 					HTTPHandler: config.HTTPHandler{
@@ -76,7 +76,7 @@ func TestDataPipeRun_RunOnStart(t *testing.T) {
 			Interval:          time.Minute,
 		},
 		Handlers: &config.HandlerMap{
-			{
+			config.HandlerMapItem{
 				Name:    "mock",
 				Handler: config.Handler{},
 			},
@@ -116,7 +116,7 @@ func TestDataPipeRun_CancelContext(t *testing.T) {
 			Interval:          time.Minute,
 		},
 		Handlers: &config.HandlerMap{
-			{
+			config.HandlerMapItem{
 				Name:    "mock",
 				Handler: config.Handler{},
 			},
