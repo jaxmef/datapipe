@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"github.com/rs/zerolog"
 	"log"
 	"os"
 	"os/signal"
@@ -10,6 +9,8 @@ import (
 
 	"github.com/jaxmef/datapipe/config"
 	"github.com/jaxmef/datapipe/engine"
+
+	"github.com/rs/zerolog"
 )
 
 const (
