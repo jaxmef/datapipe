@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  datapipe:
+    image: jaxmef/datapipe:v0.0.1
+    environment:
+      - CONFIG_FILE_PATH=/app/config.yaml
+    volumes:
+      - ./config.yaml:/app/config.yaml
+    restart: always
+    depends_on:
+      - data-generator
+      - logger
+
+  data-generator:
+    build:
+      context: ./handler-data-generator
+      dockerfile: ./Dockerfile
+    ports:
+      - "8001:8001"
+    restart: always
+
+  logger:
+    build:
+      context: ./handler-logger
+      dockerfile: ./Dockerfile
+    ports:
+      - "8002:8002"
+    restart: always

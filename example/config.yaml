@@ -1,0 +1,32 @@
+engine:
+  disable_run_on_start: false
+  interval: 30s
+  log:
+    level: info
+    static_fields:
+      app: datapipe
+      env: dev
+
+handlers:
+  data-source:
+    type: http
+    http:
+      url: http://data-generator:8081/handle
+      method: GET
+      timeout: 10s
+      retries: 3
+      retry_interval: 30s
+
+  logger:
+    type: http
+    http:
+      url: http://logger:8082/handle
+      method: POST
+      headers:
+        Content-Type: application/json
+      body: |
+          {
+            "data": {{ data-source.data }},
+            "timestamp": {{ data-source.timestamp }}
+          }
+      timeout: 10s

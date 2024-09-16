@@ -13,7 +13,6 @@
  - **Interval Execution:** Schedule your data pipeline to run at regular intervals.
 
 ### TODO
-- [ ] Add a simple example handler
 - [ ] Add trigger API
 - [ ] Add OpenAPI doc for handlers (and triggers)
 - [ ] Add cron-like scheduling
